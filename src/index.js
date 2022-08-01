@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import { CalendarApp } from './CalendarApp';
+import './styles.css';
+import { CalendarApp } from './CalendarApp.tsx';
 
 import reportWebVitals from './reportWebVitals';
 
