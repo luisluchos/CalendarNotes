@@ -5,9 +5,49 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #263238;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.rbc-month-view {
+  background-color: #37474f;
+  color: #76ff03;
+}
+.rbc-time-view{
+  background-color: #37474f;
+  color: #76ff03;
+}
+.rbc-time-slot{
+  border-top: 0px solid #f7f7f7 !important;
+ 
+
+}
+
+.rbc-time-content > * + * > * {
+  border-left: 1px solid #607d8b
+  !important;
+}
+
+.rbc-timeslot-group {
+  border-bottom: 1px solid #607d8b
+  !important;
+
+}
+
+.rbc-now {
+  background-color: #90a4ae !important;
+  
+}
+.rbc-today {
+  background-color: #424242 !important;
+}
+.rbc-off-range-bg {
+  background-color: #546e7a
+  !important;
+}
+
