@@ -8,19 +8,16 @@ import { Navbar } from "../components/Navbar";
 import { CalendarEvent } from "../components/CalendarEvent";
 import { useState } from "react";
 import { EventCalendar } from "@/interfaces/eventCalendar";
+import { CalendarModal } from "../components/CalendarModal";
+import { useCalendarStore, useUiStore } from "../../hooks";
 
 const myEventsList = [
-  {
-    title: "All Day Event",
-    notes: "afffa",
-    start: new Date(),
-    end: addHours(new Date(), 1),
-    bgColor: "blue",
-    user: { _id: 21321, name: "pep" },
-  },
+
 ];
 
 export const CalendarPage = () => {
+  const {events} = useCalendarStore()
+  const { openDateModal} = useUiStore();
   const [lastView, setLastView] = useState(localStorage.getItem("lastView") || "month");
 
   const evenStyleGetter = (event, start, end, isSelected) => {
@@ -35,13 +32,14 @@ export const CalendarPage = () => {
     };
   };
 
-  const onDoubleClick = (event:EventCalendar) => {
+  const onDoubleClick = (event: EventCalendar) => {
     console.log("doubleclick", event);
+    openDateModal();
   };
-  const onSelect = (event:EventCalendar) => {
+  const onSelect = (event: EventCalendar) => {
     console.log("onSelect", event);
   };
-  const onViewChanged = (event:string) => {
+  const onViewChanged = (event: string) => {
     localStorage.setItem("lastView", event);
   };
 
@@ -53,7 +51,7 @@ export const CalendarPage = () => {
         culture="es"
         defaultView={lastView}
         localizer={localizer}
-        events={myEventsList}
+        events={events}
         startAccessor="start"
         endAccessor="end"
         style={{ height: "80vh" }}
@@ -63,6 +61,7 @@ export const CalendarPage = () => {
         onSelectEvent={onSelect}
         onView={onViewChanged}
       />
+      <CalendarModal />
     </>
   );
 };
