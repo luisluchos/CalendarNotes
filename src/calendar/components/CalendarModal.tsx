@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { differenceInSeconds } from "date-fns";
 //import 'sweetalert2/src/sweetalert2.scss'
 import Swal from "sweetalert2";
-import { useUiStore } from "../../hooks";
+import { useCalendarStore, useUiStore } from "../../hooks";
 
 const customStyles = {
   content: {
@@ -24,6 +24,7 @@ Modal.setAppElement("#root");
 export const CalendarModal = () => {
 
  const {isDateModalOpen, closeDateModal}= useUiStore()
+ const {activeEvent}=useCalendarStore()
 
   const [formValues, setFormValues] = useState({
     title: "",
@@ -31,6 +32,12 @@ export const CalendarModal = () => {
     start: new Date(),
     end: new Date(),
   });
+
+  useEffect(() => {
+    if (activeEvent !== null) {
+      setFormValues(activeEvent);
+    }
+  }, [activeEvent]);
 
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });

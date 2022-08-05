@@ -16,7 +16,7 @@ const myEventsList = [
 ];
 
 export const CalendarPage = () => {
-  const {events} = useCalendarStore()
+  const {events, setActiveEvent} = useCalendarStore()
   const { openDateModal} = useUiStore();
   const [lastView, setLastView] = useState(localStorage.getItem("lastView") || "month");
 
@@ -38,6 +38,7 @@ export const CalendarPage = () => {
   };
   const onSelect = (event: EventCalendar) => {
     console.log("onSelect", event);
+    setActiveEvent(event);
   };
   const onViewChanged = (event: string) => {
     localStorage.setItem("lastView", event);
