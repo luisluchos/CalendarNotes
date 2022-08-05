@@ -10,6 +10,8 @@ import { useState } from "react";
 import { EventCalendar } from "@/interfaces/eventCalendar";
 import { CalendarModal } from "../components/CalendarModal";
 import { useCalendarStore, useUiStore } from "../../hooks";
+import { FabAddNew } from "../components/FabAddNew";
+import { FabDelete } from "../components/FabDelete";
 
 const myEventsList = [
 
@@ -63,6 +65,8 @@ export const CalendarPage = () => {
         onView={onViewChanged}
       />
       <CalendarModal />
+      <FabAddNew/>
+      <FabDelete/>
     </>
   );
 };

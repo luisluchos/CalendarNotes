@@ -23,7 +23,28 @@ export const calendarSlice = createSlice({
     onSetActiveEvent: (state, action) => {
       state.activeEvent = action.payload;
     },
+    onAddEvent: (state, action) => {
+      state.events.push(action.payload);
+      state.activeEvent = null;
+    },
+
+    onUpdateEvent: (state, action) => {
+      state.events = state.events.map((event) => {
+        if (event._id === action.payload._id) {
+          return action.payload;
+        }
+        return event;
+      });
+    },
+
+    onDeleteEvent: (state, action) => {
+      if (state.activeEvent) {
+        console.log("EVENTS", state.events);
+        state.events = state.events.filter((event) => event._id !== action.payload);
+        state.activeEvent = null;
+      }
+    },
   },
 });
 
-export const {onSetActiveEvent} = calendarSlice.actions;
+export const { onSetActiveEvent, onAddEvent, onUpdateEvent, onDeleteEvent } = calendarSlice.actions;

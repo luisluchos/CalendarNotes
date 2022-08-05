@@ -24,7 +24,7 @@ Modal.setAppElement("#root");
 export const CalendarModal = () => {
 
  const {isDateModalOpen, closeDateModal}= useUiStore()
- const {activeEvent}=useCalendarStore()
+ const {activeEvent, startSavingEvent}=useCalendarStore()
 
   const [formValues, setFormValues] = useState({
     title: "",
@@ -65,6 +65,10 @@ export const CalendarModal = () => {
         Swal.fire('Error', 'El título es obligatorio', 'error');
       return;
     }
+
+    startSavingEvent(formValues);
+    
+    closeDateModal();
 }
 
     

@@ -92,3 +92,29 @@ code {
   padding: 10px;
 }
 
+/*FABS*/
+
+.btn-fab {
+  background-color: #607d8b;
+  border-radius: 50%;
+  color: white;
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+.btn-fab-delete {
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 999;
+}
+
