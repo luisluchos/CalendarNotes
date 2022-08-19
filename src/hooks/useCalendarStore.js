@@ -35,5 +35,6 @@ export const useCalendarStore = () => {
     setActiveEvent,
     startSavingEvent,
     onDeletingEvent,
+    events
   };
 };

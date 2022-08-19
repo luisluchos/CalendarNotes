@@ -24,6 +24,6 @@
         "@/*": ["src/*"]
       },
     },
-    "include": ["**/*.ts", "**/*.tsx", "src/auth/pages/LoginPage.tsx"],
+    "include": ["**/*.ts", "**/*.tsx", "src/auth/pages/LoginPage.tsx", "src/hooks/useAuthStore.js"],
     "exclude": ["node_modules"]
   }
