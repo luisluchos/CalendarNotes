@@ -1,3 +1,4 @@
+import { useAuthStore } from "../../hooks";
 import { useForm } from "../../hooks/useForm";
 import "./LoginPage.css";
 
@@ -14,11 +15,21 @@ const registerFormFields = {
 };
 
 export const LoginPage = () => {
-  const { formState, onInputChange: onLoginInputChange } = useForm(loginFormFields); //onInputChange change name to onlogininputchange para que no haya conflictos con el onInputChange de useForm
-  const { formState:formStateRegister, onInputChange: onRegisterInputChange } = useForm(registerFormFields);
+  const { startLogin } = useAuthStore();
+
+  const { formState, onInputChange: onLoginInputChange } =
+    useForm(loginFormFields); //onInputChange change name to onlogininputchange para que no haya conflictos con el onInputChange de useForm
+  const { formState: formStateRegister, onInputChange: onRegisterInputChange } =
+    useForm(registerFormFields);
+
   const loginSubmit = (e) => {
+    console.log(formState);
+
     e.preventDefault();
-    console.log("login submit", formState.loginEmail, formState.loginPassword);
+    startLogin({
+      email: formState.loginEmail,
+      password: formState.loginPassword,
+    });
   };
   const registerSubmit = (e) => {
     e.preventDefault();
