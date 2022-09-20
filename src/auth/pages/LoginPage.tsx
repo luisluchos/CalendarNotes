@@ -24,13 +24,14 @@ export const LoginPage = () => {
 
   const loginSubmit = (e) => {
     console.log(formState);
-
     e.preventDefault();
     startLogin({
       email: formState.loginEmail,
       password: formState.loginPassword,
     });
   };
+
+  
   const registerSubmit = (e) => {
     e.preventDefault();
     console.log(
