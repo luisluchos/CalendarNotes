@@ -1,6 +1,8 @@
 import { useAuthStore } from "../../hooks";
 import { useForm } from "../../hooks/useForm";
 import "./LoginPage.css";
+import { useEffect } from 'react';
+import Swal from "sweetalert2";
 
 const loginFormFields = {
   loginEmail: "",
@@ -15,7 +17,7 @@ const registerFormFields = {
 };
 
 export const LoginPage = () => {
-  const { startLogin } = useAuthStore();
+  const { startLogin ,startRegister, errorMessage} = useAuthStore();
 
   const { formState, onInputChange: onLoginInputChange } =
     useForm(loginFormFields); //onInputChange change name to onlogininputchange para que no haya conflictos con el onInputChange de useForm
@@ -31,18 +33,32 @@ export const LoginPage = () => {
     });
   };
 
-  
+
   const registerSubmit = (e) => {
     e.preventDefault();
-    console.log(
-      "register submit",
-      formStateRegister.registerName,
-      formStateRegister.registerEmail,
-      formStateRegister.registerPassword,
-      formStateRegister.registerPasswordConfirm
-    );
+    if(formStateRegister.registerPassword !== formStateRegister.registerPasswordConfirm){
+      Swal.fire('Error', 'Las contraseñas no coinciden', 'error');
+      return;
+    }
+    console.log(formStateRegister);
+    startRegister({
+      name: formStateRegister.registerName,
+      email: formStateRegister.registerEmail,
+      password: formStateRegister.registerPassword,
+    });
   };
 
+  useEffect(() => {
+    if(errorMessage !== undefined){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: errorMessage,
+      })
+     
+
+    }
+    }, [errorMessage]);
   return (
     <div className="container login-container">
       <div className="row">
@@ -129,3 +145,5 @@ export const LoginPage = () => {
     </div>
   );
 };
+
+
